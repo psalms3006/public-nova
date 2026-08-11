@@ -48,9 +48,10 @@ def test_safety_gate_blocks_consequential_tools() -> None:
 
 
 def test_safety_gate_allows_safe_action() -> None:
-    from public_nova.safety import safety_gate
+    from public_nova.safety import AuditLog, default_audit, safety_gate
 
-    result = safety_gate("file_controller", {"action": "list"}, lambda: "no")
+    audit = default_audit()
+    result = safety_gate("file_controller", {"action": "list"}, lambda: "no", audit)
     assert result is None
 
 
@@ -75,7 +76,7 @@ def test_mock_provider_returns_text() -> None:
 
 
 def test_tool_registry_has_safe_tools() -> None:
-    from public_nova.tools import available_tools, load_default_tools, tool_names
+    from public_nova.tools import available_tools, load_default_tools, tool_execute, tool_names
 
     load_default_tools()
     names = tool_names()

@@ -10,6 +10,7 @@ import logging
 import os
 import re
 import sys
+from pathlib import Path
 from typing import Callable
 
 from public_nova.config import NovaConfig
