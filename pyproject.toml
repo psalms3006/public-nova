@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "public-nova"
+version = "0.1.0"
+description = "Public demonstration of Project NOVA — a safe, reconstructed subset."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+online = [
+    "google-genai>=0.3,<1",
+]
+ollama = [
+    "httpx>=0.28.1,<1",
+]
+
+[project.scripts]
+public-nova = "public_nova.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
